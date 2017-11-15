@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8426EFCA-53F7-4917-99E2-F3D55EF1978A}</ProjectGuid>
+    <ProjectGuid>{53F6E96D-EF40-4ADE-80C1-320CC209F0D5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NightlyCode.IRC</RootNamespace>
-    <AssemblyName>NightlyCode.IRC</AssemblyName>
+    <RootNamespace>IRC.Tests</RootNamespace>
+    <AssemblyName>IRC.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,8 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NightlyCode.Core">
-      <HintPath>..\..\..\Compiled\Library\NightlyCode.Core.dll</HintPath>
+    <Reference Include="nunit.framework, Version=3.4.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Extern\NUnit\3.4.1\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -43,14 +44,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Chat\IrcChatClient.cs" />
-    <Compile Include="IrcTag.cs" />
-    <Compile Include="IrcClient.cs" />
-    <Compile Include="IrcCommandResponse.cs" />
-    <Compile Include="IrcMessage.cs" />
-    <Compile Include="IrcParser.cs" />
-    <Compile Include="Logger.cs" />
+    <Compile Include="ClientTests.cs" />
+    <Compile Include="MessageTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IRC\IRC.csproj">
+      <Project>{8426efca-53f7-4917-99e2-f3d55ef1978a}</Project>
+      <Name>IRC</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -60,8 +62,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <Target Name="AfterBuild">
-    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(DevDir)\Compiled\Library\" />
-    <Copy SourceFiles="$(DocumentationFile)" DestinationFolder="$(DevDir)\Compiled\Library\" />
-  </Target>
 </Project>
