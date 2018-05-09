@@ -41,8 +41,17 @@ namespace NightlyCode.IRC {
                 using(StreamReader reader = new StreamReader(tcpclient.GetStream())) {
                     while(tcpclient.Connected) {
                         string line = reader.ReadLine();
-                        if(line != null)
-                            MessageReceived?.Invoke(IrcParser.Parse(line));
+                        if(line != null) {
+                            IrcMessage message;
+                            try {
+                                message = IrcParser.Parse(line);
+                            }
+                            catch(Exception pe) {
+                                Logger.Error(this, $"Error parsing irc message '{line}'", pe);
+                                continue;
+                            }
+                            MessageReceived?.Invoke(message);
+                        }
                     }
                 }
             }

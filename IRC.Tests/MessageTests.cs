@@ -24,6 +24,7 @@ namespace IRC.Tests {
                 yield return "@aaa=bbb;ccc;example.com/ddd=eee :nick!ident@host.com PRIVMSG me Hello";
                 yield return "@ban-reason=Follow\\sthe\\srules :tmi.twitch.tv CLEARCHAT #dallas ronni";
                 yield return ":<user>!<user>@<user>.tmi.twitch.tv JOIN #<channel>";
+                yield return ":thronezilla!thronezilla@thronezilla.tmi.twitch.tv JOIN #rugenforth";
             }
         }
 
