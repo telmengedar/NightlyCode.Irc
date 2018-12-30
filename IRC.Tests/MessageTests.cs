@@ -25,6 +25,8 @@ namespace IRC.Tests {
                 yield return "@ban-reason=Follow\\sthe\\srules :tmi.twitch.tv CLEARCHAT #dallas ronni";
                 yield return ":<user>!<user>@<user>.tmi.twitch.tv JOIN #<channel>";
                 yield return ":thronezilla!thronezilla@thronezilla.tmi.twitch.tv JOIN #rugenforth";
+                yield return ":tmi.twitch.tv HOSTTARGET #rugenforth :xanias 1";
+                yield return ":tmi.twitch.tv :tmi.twitch.tv RECONNECT";
             }
         }
 
@@ -45,28 +47,6 @@ namespace IRC.Tests {
         [Test]
         public void GenerateMessage([ValueSource(nameof(TestMessages))] Tuple<IrcMessage, string> message) {
             Assert.AreEqual(message.Item2, message.Item1.ToString());
-        }
-
-        [Test]
-        public void Bla() {
-            float[] values = new float[25];
-            for(int y=-2;y<3;++y)
-                for(int x = -2; x < 3; ++x) {
-                    values[(y + 2) * 5 + (x + 2)] = (float)Math.Pow((x * x + y * y), 0.3);
-                }
-
-            values[0] = 0.0f;
-            values[4] = 0.0f;
-            values[20] = 0.0f;
-            values[24] = 0.0f;
-
-            /*float max = values.Max();
-            for(int i = 0; i < values.Length; ++i)
-                values[i] = max - values[i];*/
-
-            float sum = values.Sum();
-            for(int i = 0; i < values.Length; ++i)
-                values[i] = values[i] / sum;
         }
     }
 }

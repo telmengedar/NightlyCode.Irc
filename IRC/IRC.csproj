@@ -40,6 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Channels\ChannelMode.cs" />
+    <Compile Include="Channels\ChannelModeExtensions.cs" />
+    <Compile Include="Users\UserModeExtensions.cs" />
     <Compile Include="Chat\IrcChatClient.cs" />
     <Compile Include="IrcTag.cs" />
     <Compile Include="IrcClient.cs" />
@@ -48,6 +51,7 @@
     <Compile Include="IrcParser.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Users\UserMode.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
