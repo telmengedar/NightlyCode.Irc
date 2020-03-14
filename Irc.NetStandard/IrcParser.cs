@@ -12,41 +12,41 @@ namespace NightlyCode.IRC {
     public static class IrcParser {
 
         static string Unescape(string value) {
-            StringBuilder sb=new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             for(int i = 0; i < value.Length; ++i) {
                 switch(value[i]) {
-                    case '\\':
-                        if(++i < value.Length) {
-                            switch(value[i]) {
-                                case 's':
-                                    sb.Append(' ');
-                                    break;
-                                case 'r':
-                                    sb.Append('\r');
-                                    break;
-                                case 'n':
-                                    sb.Append('\n');
-                                    break;
-                                case ':':
-                                    sb.Append(';');
-                                    break;
-                                default:
-                                    sb.Append(value[i]);
-                                    break;
+                case '\\':
+                    if(++i < value.Length) {
+                        switch(value[i]) {
+                        case 's':
+                            sb.Append(' ');
+                            break;
+                        case 'r':
+                            sb.Append('\r');
+                            break;
+                        case 'n':
+                            sb.Append('\n');
+                            break;
+                        case ':':
+                            sb.Append(';');
+                            break;
+                        default:
+                            sb.Append(value[i]);
+                            break;
 
-                            }
                         }
-                        break;
-                    default:
-                        sb.Append(value[i]);
-                        break;
+                    }
+                    break;
+                default:
+                    sb.Append(value[i]);
+                    break;
                 }
             }
             return sb.ToString();
         }
 
         static IrcTag ParseTag(string tag) {
-            Match match = Regex.Match(tag, "((?<vendor>.+)/)?(?<key>[^=]+)(=(?<value>.+))?");
+            Match match = Regex.Match(tag, "((?<vendor>[^=]+)/)?(?<key>[^=]+)(=(?<value>.+))?");
             return new IrcTag(match.Groups["vendor"].Value, match.Groups["key"].Value, Unescape(match.Groups["value"].Value));
         }
 
